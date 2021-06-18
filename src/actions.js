@@ -9,9 +9,9 @@ export const errorHandler = (err) => {
     }
 }
 
-export const getOrganizations = (latitude = null, longitude = null, callback) => {
+export const getOrganizations = (latitude, longitude, callback) => {
     return (dispatch) => {
-        axios.get(URI + `company?isOpenNow=false&latitude=${latitude}&longitude=${longitude}`).then(({data}) => {
+        axios.get(URI + `company?latitude=${latitude}&longitude=${longitude}`).then(({data}) => {
             callback()
             dispatch({
                 type: GET_ORGANIZATIONS,
@@ -26,7 +26,7 @@ export const getOrganizations = (latitude = null, longitude = null, callback) =>
 
 export const getOrganization = (id, callback) => {
     return (dispatch) => {
-        axios.get(URI + `/find/by-company-id?companyId=${id}`).then(({data}) => {
+        axios.get(URI + `find/by-company-id?companyId=${id}`).then(({data}) => {
             callback(data)
         }).catch((err) => {
             callback()

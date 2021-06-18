@@ -9,6 +9,9 @@ import {
     Container, Divider,
     FormControl,
     FormControlLabel,
+    RadioGroup,
+    Radio,
+    FormLabel,
     InputLabel,
     MenuItem,
     Select, Typography
@@ -71,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = ({products, findProducts}) => {
     const classes = useStyles();
 
-    const [sortBy, setSortBy] = React.useState("");
+    const [sortBy, setSortBy] = React.useState("price");
     const [search, setSearch] = React.useState("");
     const [latitude, setLatitude] = React.useState(0);
     const [longitude, setLongitude] = React.useState(0);
@@ -89,10 +92,6 @@ const Home = ({products, findProducts}) => {
         })
     }, [])
 
-    const handleChangeSort = (event) => {
-        setSortBy(event.target.value)
-    };
-
     const handleChangeSearch = (event) => {
         setSearch(event.target.value)
     };
@@ -103,7 +102,7 @@ const Home = ({products, findProducts}) => {
             latitude,
             longitude,
             shortName: search,
-            sortBy: sortBy !== "" ? sortParams.find(({id}) => id === sortBy).value : "",
+            sortBy: sortBy,
             isOpenNow
         }
         findProducts(params, () => {
@@ -136,6 +135,10 @@ const Home = ({products, findProducts}) => {
         </>
     )
 
+    const handleChangeSort = (event) => {
+        setSortBy(event.target.value);
+      };
+
     return (
         <Container className={classes.root}>
             <Paper variant="outlined" className={classes.paper} >
@@ -148,27 +151,20 @@ const Home = ({products, findProducts}) => {
                         onChange={handleChangeSearch}
                     />
                 </Paper>
+                <br/>
+                <br/>
 
-                <FormControl variant="filled" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-filled-label">Сортировка по</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        value={sortBy}
-                        onChange={handleChangeSort}
-                    >
-                        <MenuItem value={""}>
-                            <em>Умолчанию</em>
-                        </MenuItem>
-                        {
-                            sortParams.map((item) => (
-                                <MenuItem value={item.id}>{item.name}</MenuItem>
-                            ))
-                        }
-                    </Select>
+                <FormControl component="fieldset">
+                    <FormLabel component="legend">Сортировка по</FormLabel>
+                    <RadioGroup aria-label="gender" name="gender1" value={sortBy} onChange={handleChangeSort}>
+                        <FormControlLabel value={"price"} control={<Radio />} label="Цене" />
+                        <FormControlLabel value={"distance"} control={<Radio />} label="Удалённости" />
+                    </RadioGroup>
                 </FormControl>
+
                 <br/>
                 <br/>
+
                 <FormControlLabel
                     control={
                         <Checkbox

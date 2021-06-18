@@ -6,6 +6,10 @@ import {
     CircularProgress,
     Container,
     FormControl,
+    FormControlLabel,
+    RadioGroup,
+    Radio,
+    FormLabel,
     InputLabel,
     MenuItem,
     Select,
@@ -39,9 +43,6 @@ const Organizations = ({
     const [loading, setLoading] = React.useState(false);
     const [latitude, setLatitude] = React.useState(0);
     const [longitude, setLongitude] = React.useState(0);
-    const sortParams = [
-        {id: 2, name: "Удалённости", value: "distance"}
-    ]
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({coords}) => {
@@ -53,7 +54,7 @@ const Organizations = ({
 
     const getOrganizations = (sort) => {
         setLoading(true)
-        if (sort === 2) {
+        if (sort === "distance") {
             fetchOrganizations(latitude, longitude, () => {
                 setLoading(false)
             })
@@ -72,6 +73,14 @@ const Organizations = ({
                               divider onClick={() => history.push(`/organization/${item.id}`)}>
                         <Typography variant="h6">
                             {item.name}
+                        </Typography>
+
+                        <Typography variant="h6">
+                            {item.address}
+                        </Typography>
+
+                        <Typography variant="h6">
+                            Расстояние: {item.distance}
                         </Typography>
                     </ListItem>
                 ))
@@ -97,23 +106,13 @@ const Organizations = ({
     return (
         <Container className={classes.root}>
             <Paper variant="outlined" className={classes.paper}>
-                <FormControl variant="filled" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-filled-label">Сортировка по</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled"
-                        value={sortBy}
-                        onChange={handleChangeSort}
-                    >
-                        <MenuItem value={1}>
-                            <em>Умолчанию</em>
-                        </MenuItem>
-                        {
-                            sortParams.map((item) => (
-                                <MenuItem value={item.id}>{item.name}</MenuItem>
-                            ))
-                        }
-                    </Select>
+
+                <FormControl component="fieldset">
+                    <FormLabel component="legend">Сортировка по</FormLabel>
+                    <RadioGroup aria-label="gender" name="gender1" value={sortBy} onChange={handleChangeSort}>
+                        <FormControlLabel value={""} control={<Radio />} label="Умолчанию" />
+                        <FormControlLabel value={"distance"} control={<Radio />} label="Удалённости" />
+                    </RadioGroup>
                 </FormControl>
 
                 {

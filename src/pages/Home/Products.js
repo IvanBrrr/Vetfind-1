@@ -27,17 +27,28 @@ const Products = ({products = []}) => {
                 products.map((item) => (
                     <ListItem button alignItems='flex-start' style={{display: 'flex', flexDirection: 'column'}}
                               divider>
-                        <Typography variant="h6">
-                            {item.company.name}
-                        </Typography>
+                                  <div style={{
+                                      display: 'flex',
+                                      flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        width: '100%'
+                                  }}>
+                                  <Typography variant="h6">
+                                      {item.company.name}
+                                  </Typography>
+                                  <Typography variant="h6">
+                                      {item.price} руб.
+                                  </Typography>
+
+                                  </div>
                         <Typography variant="h6" className={classes.price}>
                             {item.company.address}
                         </Typography>
                         <Typography variant="h6">
-                            {item.price} руб.
+                            {item.distance}
                         </Typography>
                         <Typography variant="h6">
-                            {item.distance}
+                            Количество: {item.count}
                         </Typography>
                     </ListItem>
                 ))

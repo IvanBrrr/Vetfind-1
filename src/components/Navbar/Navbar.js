@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Container} from "@material-ui/core";
 import {withRouter} from "react-router";
+import Logo from "../../assets/logo.jpg"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,12 +24,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = ({ history }) => {
     const classes = useStyles();
-
+    
     return (
         <div className={classes.root}>
             <AppBar position="relative">
                 <Container>
                     <Toolbar>
+                        <img src={Logo} width={30} height={30} style={{ marginRight: 15 }}></img>
                         <Typography variant="h6" className={classes.title}>
                             Vetfind
                         </Typography>
