@@ -33,21 +33,21 @@ const Products = ({products = []}) => {
                                         justifyContent: 'space-between',
                                         width: '100%'
                                   }}>
-                                  <Typography variant="h6">
+                                  <Typography variant="subtitle1">
                                       {item.company.name}
                                   </Typography>
-                                  <Typography variant="h6">
+                                  <Typography variant="subtitle1">
                                       {item.price} руб.
                                   </Typography>
 
                                   </div>
-                        <Typography variant="h6" className={classes.price}>
+                        <Typography variant="subtitle1" className={classes.price}>
                             {item.company.address}
                         </Typography>
-                        <Typography variant="h6">
-                            {item.distance}
+                        <Typography variant="subtitle1">
+                            Расстояние: {item.distance}
                         </Typography>
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1">
                             Количество: {item.count}
                         </Typography>
                     </ListItem>

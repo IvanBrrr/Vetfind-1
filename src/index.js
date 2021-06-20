@@ -11,7 +11,11 @@ import { orange, purple } from '@material-ui/core/colors';
 const store = createStore(reducer, applyMiddleware(ReduxThunk))
 const theme = createMuiTheme({
     palette: {
-      primary: orange,
+      primary: {
+        light: '#f56240',
+        main: '#f56240',
+        dark: '#f56240',
+      },
     },
   });
 

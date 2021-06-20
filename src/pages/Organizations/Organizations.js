@@ -75,11 +75,11 @@ const Organizations = ({
                             {item.name}
                         </Typography>
 
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1" style={{ color: 'gray' }}>
                             {item.address}
                         </Typography>
 
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1">
                             Расстояние: {item.distance}
                         </Typography>
                     </ListItem>

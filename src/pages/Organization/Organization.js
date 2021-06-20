@@ -57,19 +57,19 @@ const Organization = ({ id, getOrganization }) => {
                         <Typography variant="h6">
                             {item.product.name}
                         </Typography>
-                        <Typography variant="h6" style={{ color: "gray" }}>
+                        <Typography variant="subtitle1" style={{ color: "gray" }}>
                             {item.price} руб.
                         </Typography>
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1">
                             Брэнд: {item.product.brand.name}
                         </Typography>
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1">
                             Количество: {item.count}
                         </Typography>
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1">
                             Масса: {item.product.bulk}
                         </Typography>
-                        <Typography variant="h6">
+                        <Typography variant="subtitle1">
                             Расстояние: {item.distance}
                         </Typography>
                     </ListItem>
